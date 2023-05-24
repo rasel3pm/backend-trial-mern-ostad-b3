@@ -1,15 +1,13 @@
 const router = require("express").Router();
-const Post = require("../model/createPostModel")
+const TaskModel = require("../model/taskModel")
 
-router.post("/create-post",async (req,res)=>{
+router.post("/create-task",async (req,res)=>{
     try{
-        const {title,description,author,categories,tagName}=req.body
-        const post =await new Post({
-            title,
+        const {task,description,author}=req.body
+        const post =await new TaskModel({
+            task,
             description,
-            author,
-            categories,
-            tagName
+            author
         })
         const data =await post.save()
         res.status(200).json({message:"post create success",data})

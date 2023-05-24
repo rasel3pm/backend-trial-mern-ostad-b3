@@ -2,7 +2,7 @@ const express = require("express");
 const router = require("./router/router");
 const dotenv= require("dotenv")
 const bodyParser = require("body-parser")
-const multer = require("multer")
+const helmet = require("helmet")
 const mongoDB =require("./database/dbConnection")
 require("colors");
 dotenv.config();
@@ -15,6 +15,7 @@ app.use(express.static("public"))
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(helmet())
 app.use(router);
 
 
